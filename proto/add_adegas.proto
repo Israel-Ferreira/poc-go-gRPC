@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option go_package = "add-adegas/services/pb";
+
+message EnderecoRequest {
+    string logradouro = 1;
+    string numero = 2;
+    string complemento = 3;
+
+    string bairro = 4;
+    string cidade = 5;
+
+    string uf = 6;
+    string cep = 7;
+
+    float latitude = 8;
+    float longitude = 9;
+}
+
+message AdegaRequestBody {
+    string nome = 1;
+    string horario_funcionamento = 2;
+    bool aceita_pedidos_online = 3;
+    string email  = 4;
+    string telefone = 5;
+    
+    EnderecoRequest endereco = 6;
+}
+
+
+message AddAdegaResponse {
+    string msg = 1;
+    int32 status = 2;
+}
+
+
+
+service AddAdegaService {
+    rpc AddAdega(AdegaRequestBody) returns (AddAdegaResponse);
+}
+

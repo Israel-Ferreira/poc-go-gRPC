@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option go_package = "list-adegas/services/pb";
+
+
+message EnderecoResponse {
+    int32 id = 1;
+    string logradouro = 2;
+    string numero = 3;
+    string complemento = 4;
+
+    string bairro = 5;
+    string cidade = 6;
+
+    string uf = 7;
+    string cep = 8;
+
+    float latitude = 9;
+    float longitude = 10;
+
+}
+
+
+
+message AdegaResponse {
+    int32 id = 1;
+    string nome = 2;
+    string horario_funcionamento = 3;
+    bool aceita_pedidos_online = 4;
+    string email  = 5;
+    string telefone = 6;
+
+    bool ativo = 7;
+    EnderecoResponse endereco = 8;
+}
+
+
+message ListAdegasFilter {}
+
+message GetAdegasByIdFilter {
+    int32 id = 1;
+}
+
+
+
+service ListAndGetAdegasService {
+    rpc ListAdegas(ListAdegasFilter) returns (stream AdegaResponse);
+    rpc GetAdegaById(GetAdegasByIdFilter) returns (AdegaResponse);
+}
