@@ -3,7 +3,7 @@ services:
   app-postgres:
     container_name: app-postgres
 
-    image: postgres:lates
+    image: postgres:latest
     ports:
       - 5435:5432
     environment:
